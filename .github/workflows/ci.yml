@@ -19,4 +19,4 @@ jobs:
           ./configure --enable-dbase
           make
       - name: Test dbase
-        -run: make test TESTS=tests
+        run: make test TESTS=tests
