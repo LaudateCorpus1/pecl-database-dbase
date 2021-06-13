@@ -1,7 +1,7 @@
-name: build
+name: Build and Test
 on: [push]
 jobs:
-  build:
+  job:
     strategy:
       matrix:
           architecture: [x64]
@@ -13,8 +13,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-      - name: build dbase
+      - name: Build dbase
         run: |
           phpize
           ./configure --enable-dbase
           make
+      - name: Test dbase
+        -run: make test TESTS=tests
