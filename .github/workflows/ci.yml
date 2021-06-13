@@ -1,0 +1,20 @@
+name: build
+on: [push]
+jobs:
+  build:
+    strategy:
+      matrix:
+          architecture: [x64]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dbase
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - name: build dbase
+        run: |
+          phpize
+          ./configure --enable-dbase
+          make
