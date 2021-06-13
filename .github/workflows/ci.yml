@@ -4,7 +4,8 @@ jobs:
   job:
     strategy:
       matrix:
-          architecture: [x64]
+          architecture: [x64, x86]
+          version: ['7.3', '7.4', '8.0', '8.1']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout dbase
@@ -12,7 +13,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{matrix.version}}
       - name: Build dbase
         run: |
           phpize
